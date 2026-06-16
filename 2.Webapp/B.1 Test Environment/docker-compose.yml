@@ -1,0 +1,41 @@
+version: '3.8'
+
+services:
+
+  dvwa:
+    image: vulnerables/web-dvwa
+    ports:
+      - "8081:80"
+    restart: unless-stopped
+    depends_on:
+      - mysql
+    networks:
+      - kavach-net
+
+  juice-shop:
+    image: bkimminich/juice-shop
+    ports:
+      - "3000:3000"
+    restart: unless-stopped
+    networks:
+      - kavach-net
+
+  mysql:
+    image: mysql:5.7
+    restart: unless-stopped
+    environment:
+      MYSQL_ROOT_PASSWORD: dvwa
+      MYSQL_DATABASE: dvwa
+      MYSQL_USER: dvwa
+      MYSQL_PASSWORD: dvwa
+    volumes:
+      - mysql-data:/var/lib/mysql
+    networks:
+      - kavach-net
+
+volumes:
+  mysql-data:
+
+networks:
+  kavach-net:
+    driver: bridge
