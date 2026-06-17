@@ -35,15 +35,13 @@ The final success criteria mandates that an independent reader can fully reconst
 
 ## 02. Team & Responsibility Matrix
 
-## 02. Team & Responsibility Matrix
-
 > All tools operate entirely under local hardware constraints using open-source utilities.
 
 | Team Member | Role | Workstream Ownership | LinkedIn |
 | :--- | :--- | :--- | :--- |
-| **Megha Sharma** | Network Forensics Lead & Web App Co-Lead | **[WS-A: Network Forensics](https://github.com/dc15jan-ux/MKavach/tree/main/1.Network)** ✅ *(Complete)* · **[WS-B: Web App Assessment](https://github.com/dc15jan-ux/MKavach/tree/main/2.Webapp)** *(Co-Owner)* | [![LinkedIn](https://img.shields.io/badge/LinkedIn-blue?logo=linkedin)](https://www.linkedin.com/in/megha-sharma-82b5601a/) |
-| **Vinay Kumar** | Web Application Security Lead | **[WS-B: Web App Assessment](https://github.com/dc15jan-ux/MKavach/tree/main/2.Webapp)** *(Co-Owner)* | [![LinkedIn](https://img.shields.io/badge/LinkedIn-blue?logo=linkedin)](#) |
-| **Kedar Pavaskar** | Threat Modelling Lead | **[WS-C: Synthesis & Threat Modelling](https://github.com/dc15jan-ux/MKavach/tree/main/3.%20Synthesis)** | [![LinkedIn](https://img.shields.io/badge/LinkedIn-blue?logo=linkedin)](https://www.linkedin.com/in/kedarpavaskar/) |
+| **Megha Sharma** | Network Forensics Lead & Web App Co-Lead | **[WS-A: Network Forensics](https://github.com/dc15jan-ux/MKavach/tree/main/1.Network)** ✅ *(Complete)* · **[WS-B: Web App Assessment](https://github.com/dc15jan-ux/MKavach/tree/main/2.Webapp)** *(Co-Owner)* | [🔗 LinkedIn](https://www.linkedin.com/in/megha-sharma-82b5601a/) |
+| **Vinay Kumar** | Web Application Security Lead | **[WS-B: Web App Assessment](https://github.com/dc15jan-ux/MKavach/tree/main/2.Webapp)** *(Co-Owner)* | 🔗 *Link TBD* |
+| **Kedar Pavaskar** | Threat Modelling Lead | **[WS-C: Synthesis & Threat Modelling](https://github.com/dc15jan-ux/MKavach/tree/main/3.%20Synthesis)** | [🔗 LinkedIn](https://www.linkedin.com/in/kedarpavaskar/) |
 
 ---
 
