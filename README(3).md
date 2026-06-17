@@ -32,20 +32,7 @@ Project KaVacH is a comprehensive, multi-surface security evaluation combining n
 
 Three workstreams run in parallel and converge into a single board-level readout. Workstreams A and B run from Iteration 2; Workstream C synthesises both in Iteration 4.
 
-```
-CLIENT (Meridian FinServe)
-        │
-        ├──▶  WORKSTREAM A · Network Forensics
-        │         PCAP · Triage · Hypotheses · IOCs · Arch diff
-        │
-        ├──▶  WORKSTREAM B · Web App Assessment
-        │         DVWA · Juice Shop · Exploit · Patch · SAST
-        │
-        └──▶  WORKSTREAM C · Synthesis  ──▶  BOARD READOUT
-                  Joint threat model · Defense-in-Depth
-```
 
-```mermaid
 flowchart LR
     CLIENT["<b>CLIENT</b><br/>Meridian FinServe<br/><i>FICTIONAL · NBFC</i>"]
 
