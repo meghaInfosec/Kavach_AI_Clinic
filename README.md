@@ -37,9 +37,9 @@ The final success criteria mandates that an independent reader can fully reconst
 
 | Team Member | Role | Workstream Ownership |
 | :--- | :--- | :--- |
-| **Megha Sharma** | Network Forensics Lead & Web App Co-Lead | Workstream A Network Forensics Complete A· Workstream B Web App Assessment (co-owner) |
-| **Vinay Kumar** | Web Application Security Lead | Workstream B WebApp Assessment (co-owner) |
-| **Kedar Pavaskar** | Threat Modelling Lead | Workstream C Synthesis A· Threat Modelling |
+| **Megha Sharma** | Network Forensics Lead & Web App Co-Lead | **[WS-A: Network Forensics](https://github.com/dc15jan-ux/MKavach/tree/main/1.Network)** ✅ *(Complete)* · **[WS-B: Web App Assessment](https://github.com/dc15jan-ux/MKavach/tree/main/2.Webapp)** *(Co-Owner)* |
+| **Vinay Kumar** | Web Application Security Lead | **[WS-B: Web App Assessment](https://github.com/dc15jan-ux/MKavach/tree/main/2.Webapp)** *(Co-Owner)* |
+| **Kedar Pavaskar** | Threat Modelling Lead | **[WS-C: Synthesis & Threat Modelling](https://github.com/dc15jan-ux/MKavach/tree/main/3.%20Synthesis)** |
 
 ---
 
