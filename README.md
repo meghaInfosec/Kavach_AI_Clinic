@@ -184,15 +184,15 @@ MKavach/
 
 ## 08. Tooling Matrix
 
-**Operating entirely under local hardware constraints using open-source utilities:**
+> All tools operate entirely under local hardware constraints using open-source utilities.
 
 | Security Phase | Tools Used | Purpose |
 | :--- | :--- | :--- |
-| **Packet Capture Triage** | Wireshark, `tshark`, Zeek, Suricata | Network packet analysis, session filtering, and traffic baselining |
-| **Vulnerability Target Interfaces** | DVWA, OWASP Juice Shop | Local target replication hosted completely via Docker |
-| **Interception & Probing** | Burp Suite Community, OWASP ZAP, `curl` | Web request interception, proxy modification, and manual injection testing |
-| **Static Analysis Engines** | Semgrep CE, Bandit, ESLint Security | Automated SAST review to catch hardcoded flaws and insecure code paths |
-| **Modeling & Visualizations** | Mermaid, Draw.io | Generating clear before-vs-after architecture diffs and timeline layouts |
+| **Packet Capture Triage** | Wireshark, tshark, Zeek | PCAP analysis, protocol dissection, and network traffic parsing |
+| **Vulnerability Target Interfaces** | DVWA, OWASP Juice Shop | Local target replication hosted entirely via Docker |
+| **Interception & Probing** | Burp Suite Community, curl | Web request interception, proxy modification, and manual injection testing |
+| **Static Analysis** | Semgrep CE | Detection of hardcoded flaws and insecure code paths via static review |
+| **Modeling & Visualization** | Mermaid, Draw.io | Generating architecture diagrams, before-vs-after diffs, and timeline layouts |
 
 ---
 
