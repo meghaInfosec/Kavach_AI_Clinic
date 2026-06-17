@@ -1,5 +1,4 @@
-[README.md](https://github.com/user-attachments/files/29036432/README.md)
-
+[README(1).md](https://github.com/user-attachments/files/29036493/README.1.md)
 # 🛡️ Project KaVacH: Two-Surface Security Assessment
 
 ![IIT Roorkee](https://img.shields.io/badge/IIT%20Roorkee-8B0000?style=for-the-badge)
@@ -32,7 +31,10 @@ Project KaVacH is a comprehensive, multi-surface security evaluation combining n
 
 Three workstreams run in parallel and converge into a single board-level readout. Workstreams A and B run from Iteration 2; Workstream C synthesises both in Iteration 4.
 
+```
+```
 
+```mermaid
 flowchart LR
     CLIENT["<b>CLIENT</b><br/>Meridian FinServe<br/><i>FICTIONAL · NBFC</i>"]
 
