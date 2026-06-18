@@ -60,9 +60,7 @@ This document presents Meridian FinServe's network architecture in three stages:
 <!-- INTERACTIVE TIMELINE — render this HTML block in a browser or embed tool -->
 <!-- See attack-timeline.html for the full interactive version -->
 
-```
-
-```
+---
 
 ### Attack Chain — Static Mermaid Reference
 
