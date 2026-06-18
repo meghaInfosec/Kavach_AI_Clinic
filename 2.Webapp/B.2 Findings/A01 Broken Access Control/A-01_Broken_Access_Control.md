@@ -127,5 +127,163 @@ This lab demonstrates a classic case of **Broken Access Control**.
 | Firefox | Browser for navigating the app |
 
 ---
+## Remediation Patch — Broken Access Control (Forged Review)
+
+**OWASP:** A01:2021 — Broken Access Control
+**CVE Class:** CWE-639 · Authorization Bypass Through User-Controlled Key
+
+---
+
+### Root Cause
+
+The `/rest/products/:id/reviews` endpoint accepted the `author` field
+directly from the request body instead of deriving it from the
+authenticated session. Any authenticated user could POST a review under
+any email by simply changing one JSON field.
+
+---
+
+### Patch — Node.js / Express (Juice Shop pattern)
+
+#### Before (vulnerable)
+```js
+// routes/productReviews.js
+router.put('/:id/reviews', async (req, res) => {
+  const { message, author } = req.body   // ← author trusted from client
+  await db.reviews.insert({
+    product: req.params.id,
+    message,
+    author                               // ← attacker controls this
+  })
+  res.json({ status: 'success' })
+})
+```
+
+#### After (patched)
+```js
+// routes/productReviews.js
+const { verify } = require('jsonwebtoken')
+
+router.put('/:id/reviews', verifyToken, async (req, res) => {
+  const { message } = req.body           // ← only message accepted from body
+
+  // Author is ALWAYS derived from the verified session token — never from input
+  const author = req.user.email          // ← set by verifyToken middleware
+
+  await db.reviews.insert({
+    product: req.params.id,
+    message,
+    author
+  })
+  res.json({ status: 'success' })
+})
+```
+
+#### `verifyToken` middleware
+```js
+// middleware/auth.js
+const jwt = require('jsonwebtoken')
+
+function verifyToken(req, res, next) {
+  const authHeader = req.headers['authorization']
+  if (!authHeader) return res.status(401).json({ error: 'No token provided' })
+
+  const token = authHeader.split(' ')[1]   // Bearer <token>
+  try {
+    const decoded = jwt.verify(token, process.env.JWT_SECRET)
+    req.user = decoded                     // { email, id, role, ... }
+    next()
+  } catch (err) {
+    return res.status(403).json({ error: 'Invalid or expired token' })
+  }
+}
+
+module.exports = { verifyToken }
+```
+
+---
+
+### Patch — Edit existing review (ownership check)
+
+The same flaw applies to PATCH/edit. A user must only be able to edit
+their **own** review.
+
+```js
+// routes/productReviews.js
+router.patch('/:id/reviews/:reviewId', verifyToken, async (req, res) => {
+  const review = await db.reviews.findOne({ _id: req.params.reviewId })
+
+  if (!review) return res.status(404).json({ error: 'Review not found' })
+
+  // Ownership check — reject if the review does not belong to this user
+  if (review.author !== req.user.email) {
+    return res.status(403).json({ error: 'Forbidden — not your review' })
+  }
+
+  await db.reviews.update(
+    { _id: req.params.reviewId },
+    { $set: { message: req.body.message } }
+  )
+  res.json({ status: 'updated' })
+})
+```
+
+---
+
+### What changed and why
+
+| S.No | Change | Why |
+|------|--------|-----|
+| 1 | `author` removed from accepted request body | Client-supplied identity fields must never be trusted |
+| 2 | `author` set from `req.user.email` (JWT payload) | Server derives identity from cryptographically verified token |
+| 3 | `verifyToken` middleware added to all review routes | Every mutating request must pass authentication before reaching business logic |
+| 4 | Ownership check added to edit route | Authorization must verify the resource belongs to the requester, not just that they are logged in |
+| 5 | `process.env.JWT_SECRET` used for signing | Secret never hardcoded — stored in environment config |
+
+---
+
+### Input validation layer (bonus hardening)
+
+```js
+const { body, validationResult } = require('express-validator')
+
+router.put('/:id/reviews',
+  verifyToken,
+  body('message').isString().trim().isLength({ min: 1, max: 500 }),
+  async (req, res) => {
+    const errors = validationResult(req)
+    if (!errors.isEmpty()) {
+      return res.status(400).json({ errors: errors.array() })
+    }
+    // ... rest of handler
+  }
+)
+```
+
+---
+
+### Security test — verify the patch works
+
+```bash
+# 1. Get a valid token for user-A
+TOKEN=$(curl -s -X POST http://localhost:3000/rest/user/login \
+  -H "Content-Type: application/json" \
+  -d '{"email":"userA@test.com","password":"pass"}' \
+  | jq -r '.authentication.token')
+
+# 2. Attempt to post a review with a forged author field
+curl -X PUT http://localhost:3000/rest/products/1/reviews \
+  -H "Authorization: Bearer $TOKEN" \
+  -H "Content-Type: application/json" \
+  -d '{"message":"forged","author":"victim@juice-sh.op"}'
+
+# Expected response — author field ignored, review posted as userA@test.com
+# {"status":"success","author":"userA@test.com"}
+```
+
+---
+
+*Patch targets OWASP Juice Shop architecture (Node.js/Express/NeDB).
+Adapt `db.reviews` calls to your ORM/database driver as needed.*
 
 *This writeup is for educational purposes only. Practice only on intentionally vulnerable applications like OWASP Juice Shop.*
