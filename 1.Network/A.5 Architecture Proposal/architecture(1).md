@@ -187,7 +187,7 @@ timeline
 | 11 | CloudTrail + VPC Flow Logs | Cloud footprint dark | No visibility on AWS activity |
 
 ---
----
+
 ## Risk Reduction Summary
 
 | S.No | Threat | Before | After | PCAP Evidence |
