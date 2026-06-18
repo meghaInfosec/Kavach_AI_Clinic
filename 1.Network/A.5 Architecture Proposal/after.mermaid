@@ -1,0 +1,117 @@
+---
+title: "Meridian FinServe — AFTER (Hardened — Workstream A PCAP findings)"
+---
+flowchart TD
+
+    INTERNET["🌐 Internet"]
+
+    subgraph PERIMETER["🛡 Perimeter Layer"]
+        WAF["WAF\n(blocks malicious HTTP)"]
+        EGRESS["Egress Allowlist\nPorts 80/443 ONLY\nPort 447 BLOCKED\nC2 IPs blocked:\n37.228.70.134 · 192.236.155.230\n5.199.162.3 · 36.95.27.243 · 103.102.220.50"]
+        DNSFIREWALL["DNS Firewall\nBlocks: antivirusupdaty.com\nBlocks: ipify.org · ipinfo.io · myexternalip.com\n(IP recon — frames 818, 10962, 14878)"]
+    end
+
+    INTERNET --> WAF
+    WAF --> EGRESS
+    EGRESS --> DNSFIREWALL
+
+    subgraph IDENTITY["🔐 Identity Layer"]
+        MFA["MFA + SSO\nPAM for privileged accounts\n8h session limit"]
+    end
+
+    DNSFIREWALL --> MFA
+
+    subgraph VLAN10["🟦 VLAN 10 — DMZ"]
+        CPORTAL["Customer Portal\nLending · EMI · Statements"]
+        PPORTAL["Partner Portal\nMerchant onboarding · Reconciliation"]
+    end
+
+    subgraph EWFIREWALL["🔒 East-West Firewall — Default DENY\nBlocks: Workstation → DC direct SMB\nBlocks: svcctl across VLANs\nFixes: frame 10799 lateral movement"]
+        EWF[" "]
+    end
+
+    subgraph VLAN20["🟧 VLAN 20 — Server Zone · Data Center 1 Mumbai"]
+        direction LR
+        DC["Domain Controller\nVICTORYPUNK-DC · 10.5.26.4\n(isolated — no direct WS access)"]
+        FS["File Server"]
+        DB["Database Server\n1,80,000 borrower records\n(AES-256 at rest)"]
+        APPSVR["Application Server"]
+    end
+
+    subgraph VLAN30["🟩 VLAN 30 — Endpoint Zone"]
+        WS["Employee Workstations\n~720 employees"]
+        JUMPHOST["Jump Host\n(only path VLAN30 → VLAN20)"]
+    end
+
+    subgraph DC2["🏢 Data Center 2 — Pune (Secondary)"]
+        BAKSVR["Backup Server\n(encrypted replication)"]
+        LOGSVR["Log Server → SIEM"]
+    end
+
+    subgraph CLOUD["☁ AWS Cloud — Hardened"]
+        S3["S3 Storage\n(bucket policies enforced)"]
+        IAM["IAM Roles\n(least privilege)"]
+        CLOUDTRAIL["CloudTrail\nVPC Flow Logs"]
+    end
+
+    subgraph BRANCHES["📍 Branch Offices — VPN"]
+        direction LR
+        WEST["West Region\nAhmedabad · Surat · Nashik"]
+        NORTH["North Region\nDelhi · Jaipur · Lucknow"]
+        SOUTH["South Region\nBengaluru · Chennai · Hyderabad"]
+    end
+
+    subgraph OBSERVABILITY["👁 Observability — NDR + SIEM\nDetection: 80 min blind → target under 5 min"]
+        SURICATA["Suricata IDS\nRule: ~202s TLS no-SNI beacon\nRule: svcctl cross-VLAN\nRule: POST to external IP"]
+        ZEEK["Zeek / NSM\nConn · DNS · HTTP · SMB logs"]
+        SIEM["SIEM Pipeline\nAlerts: C2 beacon · lateral movement\nAlerts: data exfil · IP recon queries"]
+        RITA["RITA (planned)\nAutomated beacon scoring\n~202s CS C2 pattern"]
+    end
+
+    MFA --> VLAN10
+    MFA --> VLAN30
+
+    VLAN10 --> EWFIREWALL
+    VLAN30 --> EWFIREWALL
+    EWFIREWALL --> VLAN20
+
+    VLAN10 --> DB
+    VLAN10 --> APPSVR
+
+    WS --> JUMPHOST
+    JUMPHOST --> DC
+    JUMPHOST --> FS
+
+    VLAN20 <-->|"Encrypted replication"| DC2
+    VLAN20 <-->|"IAM-controlled"| CLOUD
+
+    WEST  -->|"VPN tunnel"| PERIMETER
+    NORTH -->|"VPN tunnel"| PERIMETER
+    SOUTH -->|"VPN tunnel"| PERIMETER
+
+    ZEEK --> SIEM
+    SURICATA --> SIEM
+    CLOUDTRAIL --> SIEM
+    LOGSVR --> SIEM
+
+    classDef perimeter fill:#FFE8CC,stroke:#CC6600,color:#7F3300
+    classDef identity fill:#EDE8FF,stroke:#6B58CC,color:#2D1F7A
+    classDef vlan10 fill:#D9F2E6,stroke:#3A9E6F,color:#0D5235
+    classDef vlan20 fill:#D6E8FF,stroke:#3A7FCA,color:#0D3D6E
+    classDef vlan30 fill:#FFF8E0,stroke:#C9A800,color:#5C4500
+    classDef observe fill:#F0E6FF,stroke:#8B5CF6,color:#3B1F7A
+    classDef cloud fill:#E8F4FF,stroke:#2196F3,color:#0D47A1
+    classDef dc2 fill:#F5F5F5,stroke:#888888,color:#333333
+    classDef branch fill:#FFF3E0,stroke:#FF9800,color:#5C3400
+    classDef ewf fill:#FFEBEE,stroke:#CC0000,color:#7F0000
+
+    class WAF,EGRESS,DNSFIREWALL perimeter
+    class MFA identity
+    class CPORTAL,PPORTAL vlan10
+    class DC,FS,DB,APPSVR vlan20
+    class WS,JUMPHOST vlan30
+    class SURICATA,ZEEK,SIEM,RITA observe
+    class S3,IAM,CLOUDTRAIL cloud
+    class BAKSVR,LOGSVR dc2
+    class WEST,NORTH,SOUTH branch
+    class EWF ewf
