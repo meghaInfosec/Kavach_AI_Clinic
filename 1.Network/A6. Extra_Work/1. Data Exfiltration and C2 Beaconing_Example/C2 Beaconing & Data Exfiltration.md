@@ -1,5 +1,3 @@
-[C2_Beaconing_Analysis & Data Exfiltration.md](https://github.com/user-attachments/files/28343732/final_C2_Beaconing_Analysis.md)
-
 ## C2 Beaconing & Data Exfiltration Analysis
 ## IcedID + Cobalt Strike — Enterprise Intrusion Traffic Analysis
 
