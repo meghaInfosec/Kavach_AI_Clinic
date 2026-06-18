@@ -338,8 +338,6 @@ flowchart TD
 
 --- 
 
----
-
 ## Implementation Roadmap
 
 > Controls ordered by **severity first, then effort**. The highest-severity controls — those that directly stop active C2, exfiltration, and lateral movement — start on **Week 1 (May 15)**. Architectural changes that require re-IP and switch work follow in Phase 3.
