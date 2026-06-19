@@ -2,9 +2,9 @@
 
 # 🛡️ Project KaVacH: Two-Surface Security Assessment
 
-![IIT Roorkee](https://camo.githubusercontent.com/4344e473092f2038f532dc6b4e36f9120cafeb6b085d9241dc0a306c061a0880/68747470733a2f2f696d672e736869656c64732e696f2f62616467652f494954253230526f6f726b65652d3842303030303f7374796c653d666f722d7468652d6261646765)
-![Futurense Technologies](https://img.shields.io/badge/Futurense%20Technologies-1A1A2E?style=for-the-badge)
-![GenAI-Powered Cybersecurity](https://img.shields.io/badge/GenAI--Powered%20Cybersecurity-0057A8?style=for-the-badge)
+[![IIT Roorkee](https://camo.githubusercontent.com/4344e473092f2038f532dc6b4e36f9120cafeb6b085d9241dc0a306c061a0880/68747470733a2f2f696d672e736869656c64732e696f2f62616467652f494954253230526f6f726b65652d3842303030303f7374796c653d666f722d7468652d6261646765)](https://iitr.ac.in/)
+[![Futurense Technologies](https://img.shields.io/badge/Futurense%20Technologies-1A1A2E?style=for-the-badge)](https://futurense.com/)
+[![GenAI-Powered Cybersecurity](https://img.shields.io/badge/GenAI--Powered%20Cybersecurity-0057A8?style=for-the-badge)](https://futurense.com/iit-roorkee/ai-genai-cybersecurity-pg)
 
 Megha 
 
