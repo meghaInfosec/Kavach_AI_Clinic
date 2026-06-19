@@ -7,11 +7,11 @@
 ![GenAI-Powered Cybersecurity](https://img.shields.io/badge/GenAI--Powered%20Cybersecurity-0057A8?style=for-the-badge)
 
 🎓 **PG Certificate Program — IIT Roorkee × Futurense Technologies** <br>
-Cyber Security Engagement · Cohort 2025
+Cyber Security Engagement · Cohort 2025 
 
-</div>
 
 🔗 **Official Repository:** **[meghainfosec / Kavach\_AI\_Clinic](https://github.com/meghainfosec/Kavach_AI_Clinic)** &nbsp;·&nbsp; 📄 **[Engagement Brief (PDF)](./Project_KAVACH_Sprint_2-3_Engagement_Brief.pdf)**
+</div>
 
 ---
 
