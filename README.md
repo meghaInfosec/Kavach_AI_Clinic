@@ -2,7 +2,7 @@
 
 # 🛡️ Project KaVacH: Two-Surface Security Assessment
 
-![IIT Roorkee](https://img.shields.io/badge/IIT%20Roorkee-8B0000?style=for-the-badge)
+![IIT Roorkee](https://iitr.ac.in/)
 ![Futurense Technologies](https://img.shields.io/badge/Futurense%20Technologies-1A1A2E?style=for-the-badge)
 ![GenAI-Powered Cybersecurity](https://img.shields.io/badge/GenAI--Powered%20Cybersecurity-0057A8?style=for-the-badge)
 
