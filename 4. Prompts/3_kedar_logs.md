@@ -1,5 +1,5 @@
 # Project KAVACH — Individual LLM Prompt Log
-**Member:** Kedar Pavaskar (`kedar22knit`)
+**Member:** Kedar Pavaskar (`kedarPavaskar`)
 **Role:** Threat Modelling Lead · Web Application Security Contributor
 **Workstreams covered:** C (Threat Modelling — all) · B (B.2 surface mapping · B.3 findings · B.4 SAST)
 **Tools used:** Claude (Sonnet 4.6) · ChatGPT · Perplexity (failed attempts documented)
