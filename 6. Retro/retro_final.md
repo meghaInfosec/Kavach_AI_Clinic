@@ -138,9 +138,6 @@ The Meridian FinServe architecture includes a public cloud footprint and co-loca
 
 This would extend the Defense-in-Depth proposal's coverage from the application and network layers into the infrastructure layer where NBFC-scale data actually resides.
 
-### Architecture Mapping Before Analysis Begins
-Draft the Mermaid before/after network segmentation diagrams at the start of Iteration 2, before tshark analysis begins. A pre-drawn architecture map makes anomalous traffic immediately recognisable against a baseline rather than requiring the analyst to construct the baseline and identify the anomaly simultaneously.
-
 ### Peer Review Gate on Machine-Readable Artifacts
 IOC tables (CSV), SAST results (JSON), and hypothesis verdicts should require one team member to run a verification step before merge — specifically, confirming that every IOC row has a passing tshark filter returning at least one frame from the source PCAP. This is a lightweight gate that catches the highest-consequence errors in the least time.
 
