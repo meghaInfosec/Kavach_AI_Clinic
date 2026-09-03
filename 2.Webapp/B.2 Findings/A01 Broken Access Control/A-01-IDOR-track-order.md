@@ -23,22 +23,22 @@ This falls under **A01:2021 — Broken Access Control**, specifically **CWE-639:
 Logged in as `admin@juice-sh.op` to generate a legitimate order that belongs to a privileged account.
 
 **Image 1** — Admin login (`admin@juice-sh.op`)
-`images/01-admin-login.png`
+`Evidences/01-admin-login.png`
 
 Added two products to the admin's basket:
 
 **Image 2** — Admin basket: Apple Pomace ×1, Banana Juice (1000ml) ×2 — Total 4.87¤
-`images/02-admin-basket.png`
+`Evidences/02-admin-basket.png`
 
 Proceeded through checkout — selected the saved address:
 
 **Image 3** — Select an address (Administrator, 0815 Test Street)
-`images/03-select-address.png`
+`Evidences/03-select-address.png`
 
 Chose a delivery speed:
 
 **Image 4** — Delivery Address + Choose a delivery speed (One Day Delivery selected)
-`images/04-delivery-speed.png`
+`imagesEvidences/04-delivery-speed.png`
 
 ---
 
@@ -50,7 +50,7 @@ Before finalizing the order, Burp Suite was launched and FoxyProxy was set to ro
 `Evidences/05-burp-intercept-on.png`
 
 **Image 6** — FoxyProxy extension menu confirming the "Burp" profile is active, order-completion page loaded (`/#/order-completion/5267-973532738bd932e0`)
-`images/06-order-completion-foxyproxy.png`
+`Evidences/06-order-completion-foxyproxy.png`
 
 The order confirmation page exposed the order ID directly in the URL:
 ```
@@ -65,15 +65,15 @@ This ID was noted as the **target** — an order belonging to the admin account.
 Logged out of the admin account, registered/logged in as a normal customer (`a@test.com` / "Ankita"), and placed a separate order (Apple Juice ×2).
 
 **Image 7** — Order review before payment, logged in as `a@test.com` (Ankita), Total 4.97¤
-`images/07-ankita-order-review.png`
+`Evidences/07-ankita-order-review.png`
 
 **Image 8** — Order confirmed: "Thank you for your purchase!" — Ankita's own order
-`images/08-ankita-thank-you.png`
+`Evidences/08-ankita-thank-you.png`
 
 Navigated to **Track Orders** to retrieve this account's own order ID:
 
 **Image 9** — Search Results showing Ankita's own order ID: `506c-fbdd5c9b0bc77597`
-`images/09-ankita-track-order-id.png`
+`Evidences/09-ankita-track-order-id.png`
 
 ---
 
@@ -82,7 +82,7 @@ Navigated to **Track Orders** to retrieve this account's own order ID:
 With Ankita's session still active, the `GET /rest/track-order/:id` request was sent to **Repeater**.
 
 **Image 10** — Raw request in Repeater: `GET /rest/track-order/506c-a865977248e58c2e`, `Authorization: Bearer <Ankita's JWT>` — response returns Ankita's own order data (baseline / control test)
-`images/10-repeater-own-order-response.png`
+`Evidences/10-repeater-own-order-response.png`
 
 This confirmed the request format and that Ankita's own token correctly retrieves her own order — the expected, authorized behaviour.
 
