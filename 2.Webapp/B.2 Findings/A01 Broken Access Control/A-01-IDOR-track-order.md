@@ -47,7 +47,7 @@ Chose a delivery speed:
 Before finalizing the order, Burp Suite was launched and FoxyProxy was set to route Firefox traffic through Burp.
 
 **Image 5** — Burp Suite Proxy → Intercept tab, "Intercept is on"
-`images/05-burp-intercept-on.png`
+`Evidences/05-burp-intercept-on.png`
 
 **Image 6** — FoxyProxy extension menu confirming the "Burp" profile is active, order-completion page loaded (`/#/order-completion/5267-973532738bd932e0`)
 `images/06-order-completion-foxyproxy.png`
