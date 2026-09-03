@@ -38,7 +38,7 @@ Proceeded through checkout — selected the saved address:
 Chose a delivery speed:
 
 **Image 4** — Delivery Address + Choose a delivery speed (One Day Delivery selected)
-`imagesEvidences/04-delivery-speed.png`
+`Evidences/04-delivery-speed.png`
 
 ---
 
