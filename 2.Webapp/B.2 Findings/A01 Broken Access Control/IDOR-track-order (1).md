@@ -22,9 +22,9 @@ This falls under **A01:2021 — Broken Access Control**, specifically **CWE-639:
 
 Logged in as `admin@juice-sh.op` to generate a legitimate order that belongs to a privileged account.
 
-**Image 1** — Admin login (`admin@juice-sh.op`)
+**Image 1** — Admin login (`admin@juice-sh.op`) <br>
 ![01 admin login](Evidences/01-admin-login.png)
-
+<br>
 Added two products to the admin's basket:
 
 **Image 2** — Admin basket: Apple Pomace ×1, Banana Juice (1000ml) ×2 — Total 4.87¤
