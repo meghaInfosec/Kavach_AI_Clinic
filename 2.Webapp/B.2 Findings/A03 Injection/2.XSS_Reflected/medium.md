@@ -21,7 +21,7 @@ Before attacking Medium, the same guestbook was tested at **Low security level**
 
 **Step 1 — Empty guestbook form, Low level:**
 
-![Stored XSS guestbook form, low level, empty](images/00-low-level-guestbook-form.png)
+![Stored XSS guestbook form, low level, empty](Evidences/00-low-level-guestbook-form.png)
 
 **Step 2 — Payload submitted directly (no filtering, no Burp needed):**
 ```html
